@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const morgan = require('morgan');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+// const fetch = require("node-fetch");
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,8 +11,7 @@ const DIRECTORIO_PERMITIDO_CORS = "*";
 app.use(cors({
   origin: DIRECTORIO_PERMITIDO_CORS
 }));
-//middlewares
-// app.use(morgan('dev'));
+
 app.use(cors());
 app.get('/tipo-cambio',(req,res)=>{
     res.header("Access-Control-Allow-Origin", "*");
